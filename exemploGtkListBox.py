@@ -61,6 +61,7 @@ class ExemploGtkListBox(Gtk.Window):
         listBox.add(fila)
 
         listBox2 = Gtk.ListBox()
+        
 
         for palabra in palabras:
             listBox2.add(FilaListBoxConDatos(palabra))

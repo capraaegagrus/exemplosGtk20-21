@@ -26,6 +26,8 @@ class ExemploGtkFlowBox(Gtk.Window):
         scroll.add (flowbox)
         self.inicializaFlowbox (flowbox)
 
+
+
         self.add(scroll)
 
         self.connect ("destroy", Gtk.main_quit)
