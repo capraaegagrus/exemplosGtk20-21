@@ -22,7 +22,15 @@ class ExemploFormulario(Gtk.Window):
         caixaV.pack_start(cadro1,True,True,20)
         caixaV.pack_start(cadro2,True,True,20)
 
-        caixaV2 = Gtk.Box (orientation=Gtk.Orientation.VERTICAL, spacing = 6)
+        builder = Gtk.Builder()
+        builder.add_from_file("cadroDatosBasicos.glade")
+        caixaV2 = builder.get_object ("caixaV2")
+        btnElixir = builder.get_object ("btnElixir")
+        sinais = {"on_btnElixir_clicked": self.on_btnElixir_clicked}
+        builder.connect_signals(sinais)
+        cadro1.add(caixaV2)
+        # inicio de datos básicos
+        """caixaV2 = Gtk.Box (orientation=Gtk.Orientation.VERTICAL, spacing = 6)
         cadro1.add(caixaV2)
         lblNome = Gtk.Label (label = "Nome")
         txtNome = Gtk.Entry()
@@ -43,7 +51,8 @@ class ExemploFormulario(Gtk.Window):
         caixaH.pack_start (lblFoto, False, False,2)
         caixaH.pack_start (txtFoto, False, False, 2)
         caixaH.pack_start(btnElixirFoto, False, False, 2)
-
+        """
+#fin de datos básicos
         caixaV3 = Gtk.Box (orientation = Gtk.Orientation.VERTICAL, spacing = 6)
         cadro2.add(caixaV3)
         caixaH3 = Gtk.Box (spacing = 6)
@@ -77,6 +86,9 @@ class ExemploFormulario(Gtk.Window):
 
         self.connect ("destroy", Gtk.main_quit)
         self.show_all()
+
+    def on_btnElixir_clicked(self, boton):
+        print ("Boton elixir pulsado")
 
 
 
