@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="winFiestraPrincipal">
+    <property name="name">winFiestraPrincipal</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Primeira GtkWindow con Glade e botón</property>
+    <property name="window_position">center</property>
+    <property name="default_width">300</property>
+    <property name="default_height">200</property>
+    <signal name="delete-event" handler="gtk_main_quit" swapped="no"/>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkButton" id="btnSair">
+        <property name="label" translatable="yes">Botón sair</property>
+        <property name="name">btnSair</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <signal name="clicked" handler="on_btnSair_clicked" swapped="no"/>
+      </object>
+    </child>
+  </object>
+</interface>
