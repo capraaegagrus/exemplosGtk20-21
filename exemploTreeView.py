@@ -24,16 +24,19 @@ class ExemploGtkTreeViewTelefonos (Gtk.Window):
         for persoa in axendaTel:
             mod_axenda_tel.append (persoa)
 
-        taboaAxenda = Gtk.TreeView (model = mod_axenda_tel)
+        trvTaboaAxenda = Gtk.TreeView (model = mod_axenda_tel)
 
         i=0
         for columna in columnas:
             celdaRenderer = Gtk.CellRendererText()
             col = Gtk.TreeViewColumn (columna, celdaRenderer, text=i )
-            taboaAxenda.append_column (col)
+            col.set_sort_column_id(i)
+            trvTaboaAxenda.append_column (col)
             i=i+1
 
-        self.add (taboaAxenda)
+        trvTaboaAxenda.set_reorderable(True)
+
+        self.add (trvTaboaAxenda)
 
         self.connect ("delete-event", Gtk.main_quit)
         self.show_all()
