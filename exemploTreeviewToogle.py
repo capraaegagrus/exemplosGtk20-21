@@ -20,6 +20,8 @@ class ExemploGtkTreeViewToogle (Gtk.Window):
         trvComunicacion = Gtk.TreeView (modelo)
 
         cellRendererText = Gtk.CellRendererText()
+        cellRendererText.props.editable = True
+        cellRendererText.connect ("edited", self.on_celdaTexto_edited, modelo)
 
         trcColumna = Gtk.TreeViewColumn  ("Tipo conexión")
         trcColumna.pack_start (cellRendererText, False)
@@ -40,8 +42,11 @@ class ExemploGtkTreeViewToogle (Gtk.Window):
         self.show_all()
 
     def on_celda_toggled (self, celda, fila, modelo):
-        #modelo [fila][1] = not modelo [fila] [1]
+        modelo [fila][1] = not modelo [fila] [1]
         print ("O usuario fixo clic")
+
+    def on_celdaTexto_edited (self, celda, fila, texto, modelo):
+        modelo [fila][0] = texto
 
 
 if __name__ == "__main__":
