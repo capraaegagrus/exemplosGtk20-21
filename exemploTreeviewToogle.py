@@ -89,7 +89,7 @@ class ExemploGtkTreeViewToogle (Gtk.Window):
     def on_btnEngadir_clicked(self, boton, mod):
         mod.append(["", False])
 
-    def ordear (self,modelo, fila1, fila2, datos):
+    def ordear (self, modelo, fila1, fila2, datos):
         columna, _ = modelo.get_sort_column_id()
         if modelo.get_value (fila1,columna) < modelo.get_value (fila2, columna):
             return -1
