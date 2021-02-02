@@ -46,20 +46,26 @@ class ExemploGtkTreeViewBdFiltrado (Gtk.Window):
         seleccion.connect("changed",self.on_trvDatosUsuarios_selection_changed)
 
 
-        for i, tituloColumna in enumerate (["Dni", "Nome", "Direccion","Edade", "Sexo"]):
+        for i, tituloColumna in enumerate (["Dni", "Nome", "Direccion","Edade"]):
             celda = Gtk.CellRendererText()
             columna = Gtk.TreeViewColumn (tituloColumna, celda, text=i)
             celda.props.editable = True
             celda.connect("edited", self.on_celda_edited, i, modelo)
             trvDatosUsuarios.append_column(columna)
 
-        """celda = Gtk.CellRendererCombo()
 
-        celda.props.model.append ("Home")
-        celda.props.model.append ("Muller")
-        columna = Gtk.TreeViewColumn ("Sexo", celda, text=4)
-        celda.connect ("changed", self.on_celda_changed, modelo, 4)
-"""
+        modeloCombo = Gtk.ListStore(str)
+        modeloCombo.append (("Home",))
+        modeloCombo.append (("Muller",))
+        celda = Gtk.CellRendererCombo()
+        celda.set_property("editable", True)
+        celda.set_property("model", modeloCombo)
+        celda.set_property ("text-column",0)
+        celda.set_property ("has-entry", False)
+        columna = Gtk.TreeViewColumn ("Combo", celda, text=4)
+        celda.connect ("edited", self.on_celda_changed, modelo, 4)
+        trvDatosUsuarios.append_column(columna)
+
 
 
         caixaV.pack_start(trvDatosUsuarios,True,True, 0)
@@ -120,8 +126,8 @@ class ExemploGtkTreeViewBdFiltrado (Gtk.Window):
     def on_celda_edited (self, celda, fila, texto, columna, modelo):
         modelo [fila][columna] = texto
 
-    def on_celda_changed(self, combo, fila, elemento, modelo, columna):
-        modelo [fila][columna] = combo.get_model()[elemento]
+    def on_celda_changed(self, combo, fila, texto, modelo, columna):
+        modelo [fila][columna] = texto
 
     def on_trvDatosUsuarios_selection_changed(self, selection):
         modelo, fila = selection.get_selected()
