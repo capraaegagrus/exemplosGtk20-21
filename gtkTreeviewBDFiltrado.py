@@ -46,12 +46,16 @@ class ExemploGtkTreeViewBdFiltrado (Gtk.Window):
         seleccion.connect("changed",self.on_trvDatosUsuarios_selection_changed)
 
 
-        for i, tituloColumna in enumerate (["Dni", "Nome", "Direccion","Edade"]):
+        for i, tituloColumna in enumerate (["Dni", "Nome", "Direccion"]):
             celda = Gtk.CellRendererText()
             columna = Gtk.TreeViewColumn (tituloColumna, celda, text=i)
             celda.props.editable = True
             celda.connect("edited", self.on_celda_edited, i, modelo)
             trvDatosUsuarios.append_column(columna)
+
+        celda = Gtk.CellRendererProgress()
+        columna = Gtk.TreeViewColumn ("Edade", celda, value = 3)
+        trvDatosUsuarios.append_column(columna)
 
 
         modeloCombo = Gtk.ListStore(str)
@@ -62,7 +66,7 @@ class ExemploGtkTreeViewBdFiltrado (Gtk.Window):
         celda.set_property("model", modeloCombo)
         celda.set_property ("text-column",0)
         celda.set_property ("has-entry", False)
-        columna = Gtk.TreeViewColumn ("Combo", celda, text=4)
+        columna = Gtk.TreeViewColumn ("Sexo", celda, text=4)
         celda.connect ("edited", self.on_celda_changed, modelo, 4)
         trvDatosUsuarios.append_column(columna)
 
